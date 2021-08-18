@@ -16,6 +16,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter App',
       home: MyHomePage(),
+      theme: ThemeData(fontFamily: 'Poppins'),
     );
   }
 }
@@ -66,50 +67,47 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       body: Container(
         margin: EdgeInsets.only(bottom: 80),
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              Container(
-                margin: EdgeInsets.only(
-                  top: 80,
-                  bottom: 25,
-                  left: 20,
-                  right: 20,
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Expense App',
-                      style:
-                          TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-                    ),
-                    IconButton(
-                      onPressed: () {},
-                      icon: Icon(Icons.account_circle_outlined),
-                      color: Colors.grey,
-                      iconSize: 34,
-                    ),
-                  ],
-                ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            Container(
+              margin: EdgeInsets.only(
+                top: 55,
+                bottom: 10,
+                left: 20,
+                right: 20,
               ),
-              Card(
-                color: const Color(0xff42224a),
-                margin: EdgeInsets.only(left: 20, right: 20, bottom: 50),
-                child: Container(
-                  height: 200,
-                  width: double.infinity,
-                  child: Text(
-                    'CHART!',
-                    style: TextStyle(color: Colors.white),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Expense App',
+                    style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                   ),
-                ),
-                elevation: 6,
+                  IconButton(
+                    onPressed: () {},
+                    icon: Icon(Icons.account_circle_outlined),
+                    color: Colors.grey,
+                    iconSize: 34,
+                  ),
+                ],
               ),
-              TransactionList(_userTransactions)
-            ],
-          ),
+            ),
+            Card(
+              color: const Color(0xff42224a),
+              margin: EdgeInsets.only(left: 20, right: 20, bottom: 50),
+              child: Container(
+                height: 200,
+                width: double.infinity,
+                child: Text(
+                  'CHART!',
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+              elevation: 6,
+            ),
+            TransactionList(_userTransactions)
+          ],
         ),
       ),
       floatingActionButton: FloatingActionButton(

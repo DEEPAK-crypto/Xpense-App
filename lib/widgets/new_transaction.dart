@@ -20,7 +20,7 @@ class NewTransaction extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(left: 10, right: 10),
+      // margin: EdgeInsets.only(left: 10, right: 10),
       child: Card(
         child: Container(
           padding: EdgeInsets.all(10),
@@ -30,13 +30,13 @@ class NewTransaction extends StatelessWidget {
               TextField(
                 decoration: InputDecoration(labelText: 'Title'),
                 controller: titleController,
-                onSubmitted: (_) => submitHandler,
+                onSubmitted: (_) => submitHandler(),
               ),
               TextField(
                 decoration: InputDecoration(labelText: 'Amount'),
                 controller: amountController,
                 keyboardType: TextInputType.number,
-                onSubmitted: (_) => submitHandler,
+                onSubmitted: (_) => submitHandler(),
               ),
               FlatButton(
                 onPressed: submitHandler,

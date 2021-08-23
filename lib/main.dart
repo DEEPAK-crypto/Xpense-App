@@ -1,4 +1,5 @@
-import 'package:expense_app/widgets/transaction_list.dart';
+import './widgets/chart.dart';
+import './widgets/transaction_list.dart';
 
 import './widgets/new_transaction.dart';
 
@@ -36,19 +37,29 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   final List<Transaction> _userTransactions = [
-    Transaction(
-      id: 't1',
-      title: 'New Shoes',
-      amount: 69.99,
-      date: DateTime.now(),
-    ),
-    Transaction(
-      id: 't2',
-      title: 'Katana',
-      amount: 700,
-      date: DateTime.now(),
-    ),
+    // Transaction(
+    //   id: 't1',
+    //   title: 'New Shoes',
+    //   amount: 69.99,
+    //   date: DateTime.now(),
+    // ),
+    // Transaction(
+    //   id: 't2',
+    //   title: 'Katana',
+    //   amount: 700,
+    //   date: DateTime.now(),
+    // ),
   ];
+
+  List<Transaction>? get _recentTransactions {
+    return _userTransactions.where((element) {
+      return element.date!.isAfter(
+        DateTime.now().subtract(
+          Duration(days: 7),
+        ),
+      );
+    }).toList();
+  }
 
   void _addNewTransaction(String txTitle, double txAmount) {
     final newTx = Transaction(
@@ -93,19 +104,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ],
               ),
             ),
-            Card(
-              color: const Color(0xff42224a),
-              margin: EdgeInsets.only(left: 20, right: 20, bottom: 50),
-              child: Container(
-                height: 200,
-                width: double.infinity,
-                child: Text(
-                  'CHART!',
-                  style: TextStyle(color: Colors.white),
-                ),
-              ),
-              elevation: 6,
-            ),
+            Chart(_recentTransactions!.toList()),
             TransactionList(_userTransactions)
           ],
         ),

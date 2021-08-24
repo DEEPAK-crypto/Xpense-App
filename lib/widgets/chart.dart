@@ -28,7 +28,7 @@ class Chart extends StatelessWidget {
         'day': DateFormat.E().format(weekDay).substring(0, 1),
         'amount': totalSum as double,
       };
-    });
+    }).reversed.toList();
   }
 
   double get maxSpending {
@@ -39,26 +39,62 @@ class Chart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(groupedTransactionsValues);
-    return Card(
-      color: const Color(0xff42224a),
-      margin: EdgeInsets.only(left: 20, right: 20, bottom: 50),
+    return Container(
+      margin: EdgeInsets.only(left: 20, right: 20, bottom: 30),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(30),
+        color: const Color(0xff42224a),
+      ),
+      height: 220,
       child: Container(
-        height: 200,
-        width: double.infinity,
-        child: Row(
-          children: groupedTransactionsValues!.map((data) {
-            return ChartBar(
-              data['day'].toString(),
-              data['amount'] as double,
-              maxSpending == 0.0
-                  ? 0.0
-                  : (data['amount'] as double) / maxSpending,
-            );
-          }).toList(),
+        margin: EdgeInsets.symmetric(vertical: 15, horizontal: 15),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Container(
+              height: 72,
+              margin: EdgeInsets.only(left: 8),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Text(
+                    "Outcome",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                    ),
+                  ),
+                  Text(
+                    '\$${(maxSpending).toStringAsFixed(2)}',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 28,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              width: double.infinity,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: groupedTransactionsValues!.map((data) {
+                  return Flexible(
+                    fit: FlexFit.tight,
+                    child: ChartBar(
+                      data['day'].toString(),
+                      data['amount'] as double,
+                      maxSpending == 0.0
+                          ? 0.0
+                          : (data['amount'] as double) / maxSpending,
+                    ),
+                  );
+                }).toList(),
+              ),
+            ),
+          ],
         ),
       ),
-      elevation: 6,
     );
   }
 }

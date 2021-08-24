@@ -85,14 +85,14 @@ class _MyHomePageState extends State<MyHomePage> {
               margin: EdgeInsets.only(
                 top: 55,
                 bottom: 10,
-                left: 20,
+                left: 28,
                 right: 20,
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Expense App',
+                    'Xpense App',
                     style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
                   ),
                   IconButton(

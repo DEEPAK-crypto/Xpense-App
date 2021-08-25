@@ -23,15 +23,17 @@ class ChartBar extends StatelessWidget {
             height: 80,
             width: 30,
             child: Stack(
+              alignment: Alignment.bottomCenter,
               children: <Widget>[
                 Container(
                   decoration: BoxDecoration(
                     // border: Border.all(color: Colors.grey, width: 1.0),
-
                     borderRadius: BorderRadius.circular(10),
+                    // color: Colors.red,
                   ),
                 ),
                 FractionallySizedBox(
+                  alignment: Alignment.centerRight,
                   heightFactor: spendingPercent,
                   child: Container(
                     decoration: BoxDecoration(
